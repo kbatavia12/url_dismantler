@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+}
+/* 
+body {
+    text-align: center;
+} */
+
+#url_container {
+    display: flex;
+    width: 100vw;
+    height: 90vh;
+    justify-content: center;
+    align-items: center;
+}
+
+#url_input {
+    width: 70%;
+    height: 57px;
+    font-size: 30px;
+}
+
+#dismantle_button {
+    height: 65px;
+    border: none;
+    background: #2a154c;
+    color: white;
+    padding: 0 2%;
+    font-size: 22px;
+    transition: background 150ms ease-in-out;
+    /* border-radius: 2; */
+}
+
+
+#dismantle_button:hover {
+    background: #713dc7;
+}
