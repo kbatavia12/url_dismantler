@@ -23,10 +23,11 @@ body {
 
 #error-container {
     display: flex;
-    /* justify-content: center; */
-    width: 84%;
+    justify-content: center;
+    width: 100%;
     color: red;
     font-weight: bold;
+    font-size: 20px;
 }
 
 #url_container {
@@ -55,9 +56,6 @@ body {
     /* border-radius: 2; */
 }
 
-#error {
-    /* display: none; */
-}
 
 #dismantle_button:hover {
     background: #713dc7;
