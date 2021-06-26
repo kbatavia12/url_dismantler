@@ -1,9 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 * {
     margin: 0;
 }
 
 html {
     scroll-behavior: smooth;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* 
@@ -35,18 +37,18 @@ body {
     /* align-items: center; */
     justify-content: center;
     width: 100%;
-
+    flex-wrap: wrap;
 
 }
 
 #url_input {
     width: 70%;
     height: 57px;
-    font-size: 30px;
+    font-size: 2em;
 }
 
 #dismantle_button {
-    height: 57px;
+    height: 62px;
     border: none;
     background: #2a154c;
     color: white;
@@ -54,6 +56,7 @@ body {
     font-size: 22px;
     transition: background 150ms ease-in-out;
     /* border-radius: 2; */
+    cursor: pointer;
 }
 
 
@@ -82,7 +85,7 @@ body {
 
 .url-info-value {
     width: 50%;
-    padding: 0 5%;
+    padding: 2% 5%;
 }
 
 .border-right {
@@ -92,4 +95,5 @@ body {
 .dark {
     background: #1b1b1b;
     color: white;
+    
 }
