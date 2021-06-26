@@ -44,12 +44,13 @@ function getDomains(url) {
 
 function resolveDomains(domains) {
     if (domains.length === 2) {
-        document.getElementById('mid-level-domain').innerText = `Mid Level Domain: ${domains[0].substr(1,)}`;
-        document.getElementById('top-level-domain').innerText = `Top Level Domain: ${domains[1]}`;
+        document.getElementById('subdomain-value').innerText = 'www';
+        document.getElementById('mid-level-domain-value').innerText = domains[0];
+        document.getElementById('top-level-domain-value').innerText = domains[1];
     } else {
-        document.getElementById('subdomain').innerText = `Subdomain: ${domains[0]}`;
-        document.getElementById('mid-level-domain').innerText = `Mid Level Domain: ${domains[1].substr(1,)}`;
-        document.getElementById('top-level-domain').innerText = `Top Level Domain: ${domains[2]}`;
+        document.getElementById('subdomain-value').innerText = domains[0];
+        document.getElementById('mid-level-domain-value').innerText = domains[1];
+        document.getElementById('top-level-domain-value').innerText = domains[2];
     }
 }
 
@@ -99,6 +100,9 @@ function getQueryStrings(url) {
 
         queryParams[currentParam] = currentValue;
 
+    } else {
+        urlObject["queryParams"] = null;
+        return;
     }
 
     urlObject["queryParams"] = queryParams;
@@ -106,12 +110,62 @@ function getQueryStrings(url) {
 }
 
 
+function createQueryNode(key, value) {
+    let container = document.createElement('div');
+    container.classList.add("url-info-container");
+
+    let keyContainer = document.createElement('div');
+    keyContainer.classList.add("url-info-value");
+    keyContainer.classList.add("border-right");
+    let valueContainer = document.createElement('div');
+    valueContainer.classList.add("url-info-value");
+
+    let textNodeKey = document.createElement('h4');
+    keyContainer.appendChild(textNodeKey);
+    let textNodeValue = document.createElement('h4');
+    valueContainer.appendChild(textNodeValue);
+
+    textNodeKey.innerText = key;
+    textNodeValue.innerText = value;
+
+    container.appendChild(keyContainer);
+    container.appendChild(valueContainer);
 
 
+    return container;
+
+
+}
+
+function appendQueryNode(queryParams) {
+    if (queryParams) {
+        let keys = Object.keys(queryParams);
+        let values = Object.values(queryParams);
+
+        for (let j = 0; j < keys.length; j++) {
+            let container = createQueryNode(keys[j], values[j]);
+            document.querySelector('.query-string-container').appendChild(container);
+        }
+    }
+
+
+}
+
+
+
+//Todo Multiple appends to query string
 function updateUI(urlParams) {
-    document.getElementById('scheme').innerText = `Scheme: ${urlParams.scheme}`
-    document.getElementById('path').innerText = `Path: ${urlParams.path}`
+    document.getElementById('scheme-value').innerText = urlParams.scheme;
+    document.getElementById('path-value').innerText = urlParams.path;
     resolveDomains(urlParams.domains);
+    document.getElementById('url-parts-table').style = "display: block;"
+    window.location.href = "#url-parts-table";
+
+    if (urlParams.queryParams) {
+        document.getElementById('query-table').style = "display: flex;";
+    } else {
+        document.getElementById('query-table').style = "display: none;";
+    }
 
 }
 
@@ -126,6 +180,7 @@ dismantleButton.addEventListener('click', function () {
 
         console.log(urlObject);
         updateUI(urlObject);
+        appendQueryNode(urlObject.queryParams);
     }
 });
 

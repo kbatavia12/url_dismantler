@@ -1,6 +1,11 @@
 * {
     margin: 0;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
 /* 
 body {
     text-align: center;
@@ -34,4 +39,37 @@ body {
 
 #dismantle_button:hover {
     background: #713dc7;
+}
+
+
+.url-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+    margin-bottom: 4%;
+}
+
+.url-info-container {
+    display: flex;
+    width: 70%;
+    background: white;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+}
+
+.url-info-value {
+    width: 50%;
+    padding: 0 5%;
+}
+
+.border-right {
+    border-right: 1px solid black;
+}
+
+.dark {
+    background: #1b1b1b;
+    color: white;
 }
