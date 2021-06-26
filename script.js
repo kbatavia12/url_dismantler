@@ -26,7 +26,7 @@ function getDomains(url) {
     let currentDomain = "";
     let domains = [];
 
-    while (url[i] != '/') {
+    while (url[i] != '/' && i != url.length) {
         if (url[i] == '.') {
             domains.push(currentDomain);
             currentDomain = "";
@@ -67,7 +67,7 @@ function getPath(url) {
         i++;
     }
 
-    urlObject["path"] = currentPath;
+    urlObject["path"] = currentPath !== "" ? currentPath : "/";
 
 
 }

@@ -8,10 +8,11 @@ html {
     font-family: 'Roboto', sans-serif;
 }
 
-/* 
-body {
-    text-align: center;
-} */
+#navbar {
+    padding: 1%;
+    border-bottom: 0.5px solid grey;
+}
+
 
 #main {
     display: flex;
@@ -75,9 +76,14 @@ body {
     margin-bottom: 4%;
 }
 
+h4 {
+    /* white-space: pre-wrap; */
+    word-break: break-all;
+}
+
 .url-info-container {
     display: flex;
-    width: 70%;
+    width: 80%;
     background: white;
     justify-content: space-between;
     border-bottom: 1px solid black;
@@ -86,6 +92,9 @@ body {
 .url-info-value {
     width: 50%;
     padding: 2% 5%;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .border-right {
