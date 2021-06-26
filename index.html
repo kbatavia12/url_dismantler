@@ -13,9 +13,14 @@
 
 <body>
     <!-- <h1>Dismantle a URL</h1> -->
-    <div id="url_container">
-        <input placeholder="Enter a url to dismantle.." id="url_input" type="text" />
-        <button id="dismantle_button">Dismantle</button>
+    <div id = "main" >
+        <div id="url_container">
+            <input placeholder="Enter a url to dismantle.." id="url_input" type="text" />
+            <button id="dismantle_button">Dismantle</button>
+        </div>
+        <div style = "display:none;" id = "error-container" >
+            <p id = "error" >Please enter a valid url!</p>
+        </div>
     </div>
 
     <div id = "url-parts-table" style="display: none;" >
@@ -92,6 +97,7 @@
 
 
     <script src="script.js"></script>
+    <script src="/node_modules/validator/validator.min.js"></script>
 </body>
 
 </html>

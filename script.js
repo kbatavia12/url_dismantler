@@ -1,3 +1,4 @@
+// const validator = require('validator');
 const dismantleButton = document.getElementById('dismantle_button');
 
 const urlObject = {};
@@ -49,7 +50,7 @@ function resolveDomains(domains) {
         document.getElementById('top-level-domain-value').innerText = domains[1];
     } else {
         document.getElementById('subdomain-value').innerText = domains[0];
-        document.getElementById('mid-level-domain-value').innerText = domains[1];
+        document.getElementById('mid-level-domain-value').innerText = domains[1].substr(1,);
         document.getElementById('top-level-domain-value').innerText = domains[2];
     }
 }
@@ -110,6 +111,33 @@ function getQueryStrings(url) {
 }
 
 
+function createTableHeader() {
+    let container = document.createElement('div');
+    container.classList.add("url-info-container");
+    container.classList.add("dark");
+
+    let keyContainer = document.createElement('div');
+    keyContainer.classList.add("url-info-value");
+    keyContainer.classList.add("border-right");
+    let valueContainer = document.createElement('div');
+    valueContainer.classList.add("url-info-value");
+
+    let textNodeKey = document.createElement('h4');
+    keyContainer.appendChild(textNodeKey);
+    let textNodeValue = document.createElement('h4');
+    valueContainer.appendChild(textNodeValue);
+
+    textNodeKey.innerText = "Query String Key";
+    textNodeValue.innerText = "Value";
+
+    container.appendChild(keyContainer);
+    container.appendChild(valueContainer);
+
+
+    document.getElementById('query-table').appendChild(container);
+}
+
+
 function createQueryNode(key, value) {
     let container = document.createElement('div');
     container.classList.add("url-info-container");
@@ -137,14 +165,28 @@ function createQueryNode(key, value) {
 
 }
 
+
+
+
 function appendQueryNode(queryParams) {
+    let table = document.querySelector('.query-string-container');
+    // createTableHeader();
+
     if (queryParams) {
         let keys = Object.keys(queryParams);
         let values = Object.values(queryParams);
 
+        let k = table.childElementCount;
+
+        while (k != 1) {
+            let node = table.lastChild;
+            table.removeChild(node);
+            k--;
+        }
+
         for (let j = 0; j < keys.length; j++) {
             let container = createQueryNode(keys[j], values[j]);
-            document.querySelector('.query-string-container').appendChild(container);
+            table.appendChild(container);
         }
     }
 
@@ -153,7 +195,7 @@ function appendQueryNode(queryParams) {
 
 
 
-//Todo Multiple appends to query string
+//Todo Fix Multiple appends to query string ==> Fixed
 function updateUI(urlParams) {
     document.getElementById('scheme-value').innerText = urlParams.scheme;
     document.getElementById('path-value').innerText = urlParams.path;
@@ -162,7 +204,9 @@ function updateUI(urlParams) {
     window.location.href = "#url-parts-table";
 
     if (urlParams.queryParams) {
-        document.getElementById('query-table').style = "display: flex;";
+        let table = document.getElementById('query-table');
+        table.style = "display: flex;"
+
     } else {
         document.getElementById('query-table').style = "display: none;";
     }
@@ -172,7 +216,8 @@ function updateUI(urlParams) {
 
 dismantleButton.addEventListener('click', function () {
     const url = document.getElementById('url_input').value;
-    if (url != "") {
+
+    if (validator.isURL(url)) {
         getScheme(url);
         getDomains(url);
         getPath(url);
@@ -181,6 +226,8 @@ dismantleButton.addEventListener('click', function () {
         console.log(urlObject);
         updateUI(urlObject);
         appendQueryNode(urlObject.queryParams);
+    } else {
+        document.getElementById('error-container').style = "display:flex;";
     }
 });
 

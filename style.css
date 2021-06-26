@@ -11,12 +11,31 @@ body {
     text-align: center;
 } */
 
-#url_container {
+#main {
     display: flex;
     width: 100vw;
     height: 90vh;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    /* background: blue; */
+}
+
+#error-container {
+    display: flex;
+    /* justify-content: center; */
+    width: 84%;
+    color: red;
+    font-weight: bold;
+}
+
+#url_container {
+    display: flex; 
+    /* align-items: center; */
+    justify-content: center;
+    width: 100%;
+
+
 }
 
 #url_input {
@@ -26,7 +45,7 @@ body {
 }
 
 #dismantle_button {
-    height: 65px;
+    height: 57px;
     border: none;
     background: #2a154c;
     color: white;
@@ -36,6 +55,9 @@ body {
     /* border-radius: 2; */
 }
 
+#error {
+    /* display: none; */
+}
 
 #dismantle_button:hover {
     background: #713dc7;
